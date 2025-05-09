@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - FLOWSHOP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <a href="index.html" class="logo-link">
+            <h1 class="logo">FLOWSHOP</h1>
+        </a>
+        <div class="header-actions">
+            <a href="add-product.html" class="add-product-btn" id="addProductBtn">
+                <i class="fas fa-plus"></i> Добавить товар
+            </a>
+            <div class="profile-icon" id="profileIcon">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div class="profile-container">
+        <h2 class="profile-title">Профиль пользователя</h2>
+        <div id="profile-loading" class="loading">Загрузка информации...</div>
+
+        <div id="profile-data" class="profile-data" style="display: none;">
+            <div class="profile-section">
+                <h3>Личная информация</h3>
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="profile-details">
+                        <p><strong>Email:</strong> <span id="profile-email"></span></p>
+                        <p><strong>Имя:</strong> <span id="profile-name">Не указано</span></p>
+                        <p><strong>Дата регистрации:</strong> <span id="profile-date">Недоступно</span></p>
+                        <p><strong>Статус:</strong> <span id="profile-status">Активный</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <h3>Мои заказы</h3>
+                <div id="orders-container" class="orders-container">
+                    <p class="no-orders">У вас пока нет заказов</p>
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <h3>Настройки</h3>
+                <div class="profile-actions">
+                    <button id="change-password-btn" class="profile-btn">Изменить пароль</button>
+                    <button id="logout-btn" class="profile-btn profile-btn-danger">Выйти из аккаунта</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="not-authorized" class="not-authorized" style="display: none;">
+            <p>Для просмотра профиля необходимо <a href="index.html">авторизоваться</a>.</p>
+        </div>
+    </div>
+</main>
+
+<!-- Модальное окно изменения пароля -->
+<div class="auth-modal" id="passwordModal">
+    <div class="auth-content">
+        <span class="close-btn" id="closePasswordModal">&times;</span>
+        <h2>Изменение пароля</h2>
+        <form id="changePasswordForm">
+            <div class="form-group">
+                <label for="currentPassword">Текущий пароль</label>
+                <input type="password" id="currentPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="newPassword">Новый пароль</label>
+                <input type="password" id="newPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmNewPassword">Подтвердите новый пароль</label>
+                <input type="password" id="confirmNewPassword" required>
+            </div>
+            <button type="submit" class="auth-btn">Изменить пароль</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>© 2025 FLOWSHOP. Все права защищены.</p>
+    </div>
+</footer>
+
+<script src="profile.js"></script>
+</body>
+</html>

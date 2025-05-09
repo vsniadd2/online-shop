@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOWSHOP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <a href="index.html" class="logo-link">
+            <h1 class="logo">FLOWSHOP</h1>
+        </a>
+        <div class="header-actions">
+            <div class="search-container">
+                <button class="search-toggle">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" placeholder="Поиск товаров...">
+                </div>
+            </div>
+            <a href="add-product.html" class="add-product-btn" id="addProductBtn">
+                <i class="fas fa-plus"></i> Добавить товар
+            </a>
+            <div class="profile-icon" id="profileIcon">
+                <i class="fas fa-user"></i>
+                <span class="profile-name" style="display: none;"></span>
+                <div id="profileMenu" class="profile-menu" style="display: none;">
+                    <div class="profile-menu-header">
+                        <h3 class="profile-menu-name"></h3>
+                        <p class="profile-menu-email"></p>
+                    </div>
+                    <ul>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> Мой профиль</a></li>
+                        <li><a href="my-listings.html"><i class="fas fa-list"></i> Мои объявления</a></li>
+                        <li><a href="#" id="menuLogoutBtn"><i class="fas fa-sign-out-alt"></i> Выйти</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div id="products-container" class="products-wrapper">
+        <div class="loading">Загрузка товаров...</div>
+    </div>
+</main>
+
+<!-- Модальное окно авторизации -->
+<div class="auth-modal" id="authModal">
+    <div class="auth-content">
+        <span class="close-btn">&times;</span>
+        <div class="auth-tabs">
+            <button class="tab-btn active" data-tab="login">Вход</button>
+            <button class="tab-btn" data-tab="register">Регистрация</button>
+        </div>
+
+        <div class="tab-content active" id="login">
+            <h2>Вход в аккаунт</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Пароль</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="auth-btn">Войти</button>
+            </form>
+        </div>
+
+        <div class="tab-content" id="register">
+            <h2>Создать аккаунт</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regName">Имя</label>
+                    <input type="text" id="regName" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Пароль</label>
+                    <input type="password" id="regPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="regConfirmPassword">Подтвердите пароль</label>
+                    <input type="password" id="regConfirmPassword" required>
+                </div>
+                <button type="submit" class="auth-btn">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>© 2025 FLOWSHOP. Все права защищены.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

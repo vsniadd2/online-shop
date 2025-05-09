@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои объявления - FLOWSHOP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="my-listings.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <a href="index.html" class="logo-link">
+            <h1 class="logo">FLOWSHOP</h1>
+        </a>
+        <div class="header-actions">
+            <a href="add-product.html" class="add-product-btn" id="addProductBtn">
+                <i class="fas fa-plus"></i> Добавить товар
+            </a>
+            <div class="profile-icon" id="profileIcon">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div class="listings-container">
+        <h2 class="section-title">Мои объявления</h2>
+        <div id="listings-loading" class="loading">Загрузка объявлений...</div>
+
+        <div id="listings-data" class="listings-data" style="display: none;">
+            <div class="listings-controls">
+                <div class="listings-filters">
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">Все объявления</option>
+                        <option value="active">Активные</option>
+                        <option value="inactive">Неактивные</option>
+                    </select>
+                    <select id="sortOrder" class="filter-select">
+                        <option value="newest">Сначала новые</option>
+                        <option value="oldest">Сначала старые</option>
+                        <option value="price-asc">По цене (возрастание)</option>
+                        <option value="price-desc">По цене (убывание)</option>
+                    </select>
+                </div>
+                <button id="refreshListings" class="refresh-btn"><i class="fas fa-sync"></i> Обновить</button>
+            </div>
+
+            <div id="listings-grid" class="listings-grid">
+                <!-- Здесь будут объявления пользователя -->
+            </div>
+
+            <div id="no-listings" class="no-listings" style="display: none;">
+                <p>У вас пока нет объявлений. <a href="add-product.html" class="add-link">Добавить первое объявление</a></p>
+            </div>
+        </div>
+
+        <div id="not-authorized" class="not-authorized" style="display: none;">
+            <p>Для просмотра объявлений необходимо <a href="index.html">авторизоваться</a>.</p>
+        </div>
+    </div>
+</main>
+
+<!-- Модальное окно редактирования объявления -->
+<div class="edit-modal" id="editModal">
+    <div class="edit-content">
+        <span class="close-btn" id="closeEditModal">&times;</span>
+        <h2>Редактирование объявления</h2>
+        <form id="editListingForm">
+            <input type="hidden" id="editListingId">
+            <div class="form-group">
+                <label for="editTitle">Название товара*</label>
+                <input type="text" id="editTitle" name="editTitle" required>
+            </div>
+            <div class="form-group">
+                <label for="editDescription">Описание товара*</label>
+                <textarea id="editDescription" name="editDescription" rows="5" required></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="editPrice">Цена (₽)*</label>
+                    <input type="number" id="editPrice" name="editPrice" min="0" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="editCity">Город*</label>
+                    <select id="editCity" name="editCity" required>
+                        <option value="">Выберите город</option>
+                        <option value="Москва">Москва</option>
+                        <option value="Санкт-Петербург">Санкт-Петербург</option>
+                        <option value="Казань">Казань</option>
+                        <option value="Новосибирск">Новосибирск</option>
+                        <option value="Екатеринбург">Екатеринбург</option>
+                        <option value="Минск">Минск</option>
+                        <option value="Другой">Другой</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" id="editOtherCityGroup" style="display: none;">
+                <label for="editOtherCity">Укажите ваш город</label>
+                <input type="text" id="editOtherCity" name="editOtherCity">
+            </div>
+            <div class="form-group">
+                <label for="editStatus">Статус объявления</label>
+                <select id="editStatus" name="editStatus" required>
+                    <option value="active">Активно</option>
+                    <option value="inactive">Неактивно</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Фотографии товара</label>
+                <div class="image-upload-container">
+                    <div class="current-images" id="currentImages">
+                        <!-- Здесь будут отображаться текущие изображения -->
+                    </div>
+                    <div class="image-upload-controls">
+                        <label for="editImages" class="upload-btn">
+                            <i class="fas fa-camera"></i> Добавить фото
+                        </label>
+                        <input type="file" id="editImages" name="editImages" multiple accept="image/*" style="display: none;">
+                        <p class="upload-hint">Можно загрузить до 5 фотографий. Поддерживаются форматы: JPG, PNG</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">Сохранить изменения</button>
+                <button type="button" class="cancel-btn" id="cancelEdit">Отмена</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Модальное окно подтверждения удаления -->
+<div class="confirm-modal" id="confirmModal">
+    <div class="confirm-content">
+        <h2>Удаление объявления</h2>
+        <p>Вы действительно хотите удалить это объявление?</p>
+        <div class="confirm-actions">
+            <button id="confirmDelete" class="delete-btn">Удалить</button>
+            <button id="cancelDelete" class="cancel-btn">Отмена</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>© 2025 FLOWSHOP. Все права защищены.</p>
+    </div>
+</footer>
+
+<script src="my-listings.js"></script>
+</body>
+</html>

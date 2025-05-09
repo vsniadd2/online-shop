@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр товара - FLOWSHOP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="product-details.css">
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <a href="index.html" class="logo-link">
+            <h1 class="logo">FLOWSHOP</h1>
+        </a>
+        <div class="header-actions">
+            <a href="add-product.html" class="add-product-btn" id="addProductBtn">
+                <i class="fas fa-plus"></i> Добавить товар
+            </a>
+            <div class="profile-icon" id="profileIcon">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div class="product-details" id="product-details">
+        <div class="product-info">
+            <div class="product-header">
+                <h1 class="product-title" id="productTitle"></h1>
+                <div class="product-price">
+                    <span class="price-label">Цена:</span>
+                    <span class="price-value"><span id="productPrice">0.00</span></span>
+                </div>
+            </div>
+            <div class="product-meta" id="productMeta">
+                <!-- Meta information will be added here by JavaScript -->
+            </div>
+            <div class="product-description" id="productDescription"></div>
+            <div class="seller-info">
+                <div class="seller-header">
+                    <div class="seller-avatar" id="sellerAvatar"></div>
+                    <div class="seller-details">
+                        <h3 class="seller-name" id="sellerName"></h3>
+                        <div class="seller-rating" id="sellerRating"></div>
+                    </div>
+                </div>
+                <button class="contact-seller" id="contactSeller">
+                    <i class="fas fa-envelope"></i>
+                    Связаться с продавцом
+                </button>
+            </div>
+            <button class="add-to-cart" id="addToCart">
+                <i class="fas fa-shopping-cart"></i>
+                Добавить в корзину
+            </button>
+        </div>
+        <div class="product-gallery">
+            <img src="" alt="" class="main-image" id="mainImage">
+            <div class="thumbnail-container" id="thumbnailContainer">
+                <!-- Thumbnails will be added here by JavaScript -->
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2025 FLOWSHOP. Все права защищены.</p>
+    </div>
+</footer>
+
+<script src="product-details.js"></script>
+</body>
+</html>
